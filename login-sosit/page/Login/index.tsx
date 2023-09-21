@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { Button, Input } from '@rneui/base';
+import { Button, Input } from '@rneui/themed';
 
 interface State {
   email: string;
@@ -8,7 +8,7 @@ interface State {
   message: string;
 }
 
-export default function Login() {
+export default function Login({navigation}) {
   const [state, setState] = useState<State>({
     email: '',
     senha: '',
@@ -31,6 +31,7 @@ export default function Login() {
       setState({ ...state, message: 'Preencha todos os campos.' });
     } else if (email === "adm" && senha === "1234") {
       setState({ ...state, message: 'Autenticado com sucesso.' });
+      navigation.navigate('Home', {name: 'Home'})
     } else {
       setState({ ...state, message: 'E-mail e/ou Senha incorreto(s).' });
     }
@@ -61,7 +62,7 @@ export default function Login() {
           Esqueceu sua senha?
         </Text>
         <Text style={styles.textMensagem} >
-          Novo no SOSIT!  
+          Novo no SOSIT! {" "} 
           <Text style={styles.textLink}>
             CADASTRE-SE. 
           </Text>
